@@ -10,6 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         
         let tabbarController = UITabBarController()
+        tabbarController.tabBar.backgroundColor = .white
+
         
         let profile = ProfileViewController()
         let profileNavigationController = UINavigationController(rootViewController: profile)
