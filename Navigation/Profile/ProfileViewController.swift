@@ -10,6 +10,13 @@ class ProfileViewController: UIViewController {
         self.viewWillLayoutSubviews()
         self.view.addSubview(headerView)
         
+        NSLayoutConstraint.activate([
+            headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            headerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 220)
+        ])
+        
     }
     
 

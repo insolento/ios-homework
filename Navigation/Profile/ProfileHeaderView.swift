@@ -11,11 +11,11 @@ class ProfileHeaderView: UIView {
         super.init(coder: aDecoder)
     }
     
-    var descriptionText: String = ""
-    let button = UIButton(type: .system)
-    let catImage = UIImage(named: "cat")?.cgImage
+    var statusLabel: String = ""
+    let showStatusButton = UIButton(type: .system)
+    let avatarImageView = UIImage(named: "cat")?.cgImage
     let catImageView = UIView()
-    let descriptionProfile = UILabel()
+    let statusTextField = UILabel()
     let hipsterCat = UILabel()
     let profileTitle = UIView()
     let profileTitleText = UILabel()
@@ -25,20 +25,20 @@ class ProfileHeaderView: UIView {
         let screenSize = UIScreen.main.bounds
 
 
-        button.frame = CGRect(x: 16, y: 212, width: screenSize.width-32, height: 50)
-        button.setTitle("Show status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
-        button.layer.cornerRadius = 4
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        button.addTarget(nil,action:#selector(buttonAction), for: .touchUpInside)
+        showStatusButton.frame = CGRect(x: 16, y: 212, width: screenSize.width-32, height: 50)
+        showStatusButton.setTitle("Show status", for: .normal)
+        showStatusButton.setTitleColor(.white, for: .normal)
+        showStatusButton.backgroundColor = .blue
+        showStatusButton.layer.cornerRadius = 4
+        showStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
+        showStatusButton.layer.shadowRadius = 4
+        showStatusButton.layer.shadowColor = UIColor.black.cgColor
+        showStatusButton.layer.shadowOpacity = 0.7
+        showStatusButton.addTarget(nil,action:#selector(buttonAction), for: .touchUpInside)
 
 
         catImageView.frame = CGRect(x: 16, y: 96, width: 110, height: 110)
-        catImageView.layer.contents = catImage
+        catImageView.layer.contents = avatarImageView
         catImageView.layer.borderWidth = 3
         catImageView.layer.masksToBounds = false
         catImageView.layer.borderColor = UIColor.white.cgColor
@@ -51,11 +51,11 @@ class ProfileHeaderView: UIView {
         hipsterCat.textColor = .black
         hipsterCat.font = UIFont.systemFont(ofSize: 18, weight: .bold)
 
-        descriptionProfile.frame = CGRect(x: 136, y: 178, width: screenSize.width-182, height: 27)
-        descriptionText = "Waiting for something..."
-        descriptionProfile.text = descriptionText
-        descriptionProfile.textColor = .black
-        descriptionProfile.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        statusTextField.frame = CGRect(x: 136, y: 178, width: screenSize.width-182, height: 27)
+        statusLabel = "Waiting for something..."
+        statusTextField.text = statusLabel
+        statusTextField.textColor = .black
+        statusTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         
         profileTitle.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: 80)
         profileTitle.backgroundColor = .white
@@ -65,16 +65,16 @@ class ProfileHeaderView: UIView {
         profileTitleText.frame = CGRect(x: screenSize.width/2 - screenSize.width/8, y: 20, width: screenSize.width, height: 60)
         
 
-        self.addSubview(button)
+        self.addSubview(showStatusButton)
         self.addSubview(catImageView)
         self.addSubview(hipsterCat)
-        self.addSubview(descriptionProfile)
+        self.addSubview(statusTextField)
         self.addSubview(profileTitle)
         self.addSubview(profileTitleText)
     }
     
     @objc func buttonAction() {
-        print(descriptionText)
+        print(statusLabel)
     }
 
 }
