@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         feedName.title = "Feed"
         feedName.image = UIImage(systemName: "house")
         
-        let post = PostViewController()
+        
         
         feedNavigationController.tabBarItem = feedName
         

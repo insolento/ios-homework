@@ -1,10 +1,3 @@
-//
-//  InfoViewController.swift
-//  Navigation
-//
-//  Created by мак on 09.12.2021.
-//
-
 import UIKit
 
 class InfoViewController: UIViewController {
@@ -12,22 +5,23 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .cyan
-        let alertButton = UIButton(type: .system)
-        alertButton.frame.size.height = 75
-        alertButton.frame.size.width = 250
-        alertButton.center = view.center
-        alertButton.setTitle("Open alert", for: .normal)
+        
+        let alertButton: UIButton = {
+            let button = UIButton(type: .system)
+            button.frame.size.height = 75
+            button.frame.size.width = 250
+            button.center = view.center
+            button.setTitle("Open alert", for: .normal)
+            button.addTarget(self, action:#selector(self.openAlert), for: .touchUpInside)
+            return button
+        }()
+        
         view.addSubview(alertButton)
-        alertButton.addTarget(self, action:#selector(self.openAlert), for: .touchUpInside)
-    
     }
+    
     @objc func openAlert() {
         let alertWindow = UIAlertController(title: "Name of alert", message: "Message of Alert", preferredStyle: .alert)
         present(alertWindow, animated: true, completion: nil)
         print("Было открыто UIAlertController")
     }
-    
-    
-    
-
 }
