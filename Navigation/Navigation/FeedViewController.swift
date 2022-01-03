@@ -6,11 +6,9 @@ class FeedViewController: UIViewController {
         
         super.viewDidLoad()
         
-        
         struct Post {
             internal var title: String
         }
-        
         
         view.backgroundColor = .white
         
@@ -22,14 +20,9 @@ class FeedViewController: UIViewController {
         buttonToPost.setTitle("Open Post", for: .normal)
         view.addSubview(buttonToPost)
         
-        
-        
         buttonToPost.addTarget(self, action:#selector(self.openPost), for: .touchUpInside)
     }
     @objc func openPost() {
         self.navigationController?.pushViewController(postController, animated: true)
     }
-
-   
-
 }
