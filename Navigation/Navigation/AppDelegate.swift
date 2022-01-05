@@ -10,7 +10,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         
         let tabbarController = UITabBarController()
-        tabbarController.tabBar.backgroundColor = .white
+        tabbarController.tabBar.backgroundColor = .systemGray6
+        tabbarController.tabBar.layer.borderWidth = 0.5
+        tabbarController.tabBar.layer.borderColor = UIColor.systemGray.cgColor
 
         
         let profile = ProfileViewController()
@@ -20,18 +22,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         profileName.title = "Profile"
         profileNavigationController.tabBarItem = profileName
         
+        let logIn = LogInViewController()
+        let logInNavigationController = UINavigationController(rootViewController: logIn)
+        let logInTabBar = UITabBarItem()
+        logInTabBar.image = UIImage(systemName: "person.crop.circle")
+        logInTabBar.badgeColor = UIColor(named: "VKColor")
+        logInTabBar.title = "Log In"
+        logInNavigationController.tabBarItem = logInTabBar
+        
+        
         let feed = FeedViewController()
         let feedNavigationController = UINavigationController(rootViewController: feed)
         let feedName = UITabBarItem()
         feedName.title = "Feed"
         feedName.image = UIImage(systemName: "house")
         
-        
-        
         feedNavigationController.tabBarItem = feedName
         
-        
-        tabbarController.viewControllers = [profileNavigationController, feedNavigationController]
+        tabbarController.viewControllers = [logInNavigationController, feedNavigationController]
         window?.rootViewController = tabbarController
         window?.makeKeyAndVisible()
         return true
