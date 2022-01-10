@@ -11,11 +11,6 @@ class ProfileHeaderView: UIView {
         super.init(coder: aDecoder)
     }
     
-    struct Constants {
-        static let screenSize = UIScreen.main.bounds
-        static let avatarImageView = UIImage(named: "cat")?.cgImage
-    }
-    
     var statusLabel: String = "Waiting for something..."
     
     let showStatusButton: UIButton = {
@@ -58,82 +53,50 @@ class ProfileHeaderView: UIView {
         cat.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return cat
     }()
-    
-    let profileTitle: UIView = {
-        let profTitle = UIView()
-        profTitle.backgroundColor = .white
-        profTitle.layer.borderWidth = 1
-        return profTitle
-    }()
-    
-    let profileTitleText: UILabel = {
-        let profTitleText = UILabel()
-        profTitleText.text = "Profile"
-        profTitleText.font = UIFont.systemFont(ofSize: 32, weight:.regular)
-        return profTitleText
-    }()
-    
-    let yellowView = UIView()
 
     private func setUpView() {
-        catImageView.translatesAutoresizingMaskIntoConstraints = false
-        showStatusButton.translatesAutoresizingMaskIntoConstraints = false
-        hipsterCat.translatesAutoresizingMaskIntoConstraints = false
-        statusTextField.translatesAutoresizingMaskIntoConstraints = false
-        profileTitle.translatesAutoresizingMaskIntoConstraints = false
-        profileTitleText.translatesAutoresizingMaskIntoConstraints = false
-
-        self.addSubview(catImageView)
-        self.addSubview(showStatusButton)
-        self.addSubview(hipsterCat)
-        self.addSubview(statusTextField)
-        self.addSubview(profileTitle)
-        self.addSubview(profileTitleText)
-        backgroundColor = .lightGray
+        autoresizingMaks()
+        addSubviews()
+        layout()
+        backgroundColor = .systemGray6
         statusTextField.text = statusLabel
-        
-        NSLayoutConstraint.activate([
-            profileTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            profileTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            profileTitle.topAnchor.constraint(equalTo: self.topAnchor),
-            profileTitle.heightAnchor.constraint(equalToConstant: 90)
-        ])
-        
-        NSLayoutConstraint.activate([
-            profileTitleText.bottomAnchor.constraint(equalTo: profileTitle.bottomAnchor),
-            profileTitleText.centerXAnchor.constraint(equalTo: profileTitle.centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            catImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: +16),
-            catImageView.topAnchor.constraint(equalTo: profileTitle.bottomAnchor, constant: +16.0),
-            catImageView.heightAnchor.constraint(equalToConstant: 100.0),
-            catImageView.widthAnchor.constraint(equalToConstant: 100.0)
-        ])
-        
-        NSLayoutConstraint.activate([
-            hipsterCat.leadingAnchor.constraint(equalTo: catImageView.trailingAnchor, constant: +20),
-            hipsterCat.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            hipsterCat.topAnchor.constraint(equalTo: profileTitle.bottomAnchor, constant: +27)
-        ])
-        
-        NSLayoutConstraint.activate([
-            showStatusButton.topAnchor.constraint(equalTo: catImageView.bottomAnchor, constant: +16),
-            showStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: +16),
-            showStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            showStatusButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        NSLayoutConstraint.activate([
-            statusTextField.bottomAnchor.constraint(equalTo: showStatusButton.topAnchor, constant: -34),
-            statusTextField.leadingAnchor.constraint(equalTo: catImageView.trailingAnchor, constant: +20),
-            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-        ])
-        
     }
     
     @objc func buttonAction() {
         print(statusLabel)
+    }
+    
+    func autoresizingMaks() {
+        catImageView.translatesAutoresizingMaskIntoConstraints = false
+        showStatusButton.translatesAutoresizingMaskIntoConstraints = false
+        hipsterCat.translatesAutoresizingMaskIntoConstraints = false
+        statusTextField.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func addSubviews() {
+        self.addSubview(catImageView)
+        self.addSubview(showStatusButton)
+        self.addSubview(hipsterCat)
+        self.addSubview(statusTextField)
+    }
+    
+    func layout() {
+        NSLayoutConstraint.activate([
+            catImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            catImageView.topAnchor.constraint(equalTo: self.bottomAnchor, constant: 16.0),
+            catImageView.heightAnchor.constraint(equalToConstant: 100.0),
+            catImageView.widthAnchor.constraint(equalToConstant: 100.0),
+            hipsterCat.leadingAnchor.constraint(equalTo: catImageView.trailingAnchor, constant: 20),
+            hipsterCat.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            hipsterCat.topAnchor.constraint(equalTo: self.bottomAnchor, constant: 27),
+            showStatusButton.topAnchor.constraint(equalTo: catImageView.bottomAnchor, constant: 16),
+            showStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            showStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            showStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            statusTextField.bottomAnchor.constraint(equalTo: showStatusButton.topAnchor, constant: -34),
+            statusTextField.leadingAnchor.constraint(equalTo: catImageView.trailingAnchor, constant: 20),
+            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
     }
 
 }
