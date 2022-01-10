@@ -16,7 +16,6 @@ class ProfileViewController: UIViewController {
             headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,constant: -60),
             headerView.heightAnchor.constraint(equalToConstant: 310)
-            //Добавил 90, потому что реализовал сверху надпись Profile уже в самой View
         ])
         
     }

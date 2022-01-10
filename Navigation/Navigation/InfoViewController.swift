@@ -1,17 +1,21 @@
 import UIKit
 
 class InfoViewController: UIViewController {
+    
+    let alertButton: UIButton = {
+        let alertButton = UIButton(type: .system)
+        alertButton.frame.size.height = 75
+        alertButton.frame.size.width = 250
+        alertButton.setTitle("Open alert", for: .normal)
+        alertButton.addTarget(self, action:#selector(openAlert), for: .touchUpInside)
+        return alertButton
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .cyan
-        let alertButton = UIButton(type: .system)
-        alertButton.frame.size.height = 75
-        alertButton.frame.size.width = 250
-        alertButton.center = view.center
-        alertButton.setTitle("Open alert", for: .normal)
         view.addSubview(alertButton)
-        alertButton.addTarget(self, action:#selector(self.openAlert), for: .touchUpInside)
+        alertButton.center = view.center
     }
     
     @objc func openAlert() {
@@ -23,6 +27,7 @@ class InfoViewController: UIViewController {
         present(alertWindow, animated: true, completion: nil)
         print("Было открыто UIAlertController")
     }
+    
     func pressedMI() {
         print("More Information UIAlert")
     }
