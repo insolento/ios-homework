@@ -1,29 +1,30 @@
-//
-//  PhotosOpenViewController.swift
-//  Navigation
-//
-//  Created by мак on 11.01.2022.
-//
-
 import UIKit
 
 class PhotosOpenViewController: UIViewController {
+    
+    let photo: UIImageView = {
+        let photo = UIImageView()
+        photo.translatesAutoresizingMaskIntoConstraints = false
+        return photo
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .systemBackground
+        view.addSubview(photo)
+        layout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setup(_ image: String) {
+        photo.image = UIImage(named: image)
     }
-    */
-
+    
+    func layout() {
+        NSLayoutConstraint.activate([
+            photo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            photo.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            photo.widthAnchor.constraint(equalTo: view.widthAnchor),
+            photo.heightAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+    }
 }

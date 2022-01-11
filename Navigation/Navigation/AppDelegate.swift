@@ -1,4 +1,3 @@
-
 import UIKit
 
 @main
@@ -24,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let logIn = LogInViewController()
         let logInNavigationController = UINavigationController(rootViewController: logIn)
+        logInNavigationController.navigationBar.topItem?.title = "Log In"
         let logInTabBar = UITabBarItem()
         logInTabBar.image = UIImage(systemName: "person.crop.circle")
         logInTabBar.badgeColor = UIColor(named: "VKColor")
