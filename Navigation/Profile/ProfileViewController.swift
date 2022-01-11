@@ -1,6 +1,6 @@
 import UIKit
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController: UIViewController {
     
     let profileTitle: UIView = {
         let profTitle = UIView()
@@ -51,34 +51,13 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.dataSource = self
         tableView.delegate = self
     }
-
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         guard let indexPath = tableView.indexPathForSelectedRow else { return
         }
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        postInf.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: PostCellController = tableView.dequeueReusableCell(
-            withIdentifier: CellReuseIdentifiers.post.rawValue,
-            for: indexPath
-        ) as? PostCellController else {
-            fatalError()
-        }
-
-        // update data
-        let data = postInf[indexPath.row]
-        
-        cell.update(author: data.0, description: data.1, image: data.2, likes: data.3, views: data.4)
-
-        return cell
     }
     
     func addSubviews() {
@@ -121,4 +100,27 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         ])
     }
 
+}
+
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        postInf.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: PostCellController = tableView.dequeueReusableCell(
+            withIdentifier: CellReuseIdentifiers.post.rawValue,
+            for: indexPath
+        ) as? PostCellController else {
+            fatalError()
+        }
+
+        // update data
+        let data = postInf[indexPath.row]
+        
+        cell.update(author: data.0, description: data.1, image: data.2, likes: data.3, views: data.4)
+
+        return cell
+    }
 }
