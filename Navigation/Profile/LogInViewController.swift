@@ -83,9 +83,8 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        self.navigationController?.navigationBar.isHidden = true
+
         view.backgroundColor = .systemBackground
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -95,6 +94,11 @@ class LogInViewController: UIViewController {
         view.addGestureRecognizer(tap)
         layout()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     @objc func dismissKeyboard() {

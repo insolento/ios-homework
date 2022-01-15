@@ -4,6 +4,7 @@ class PhotosOpenViewController: UIViewController {
     
     let photo: UIImageView = {
         let photo = UIImageView()
+        photo.contentMode = .scaleAspectFit
         photo.translatesAutoresizingMaskIntoConstraints = false
         return photo
     }()

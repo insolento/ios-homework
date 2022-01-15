@@ -19,12 +19,14 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.isHidden = false
+        
         for i in 1...20{
             let photoName = "photo" + String(i)
             photos.append(photoName)
         }
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         view.addSubview(photosCollection)
         layout()
         photosCollection.dataSource = self
@@ -34,8 +36,16 @@ class PhotosViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = "Photo Gallery"
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
     
     func layout() {

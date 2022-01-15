@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: CellReuseIdentifiers.photos.rawValue)
         tableView.register(PostCellController.self, forCellReuseIdentifier: CellReuseIdentifiers.post.rawValue)
         return tableView
@@ -39,15 +40,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     let headerView: UIView = {
         let headerView = ProfileHeaderView()
+        headerView.translatesAutoresizingMaskIntoConstraints = false
         return headerView
     }()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = false
         addSubviews()
-        addHeaderFooter()
         autoresizingMask()
         layout()
 
@@ -117,21 +117,23 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let uiView = UIView()
+        if section == 0 {
+            print(section)
+            tableView.addSubview(headerView)
+            headerView.heightAnchor.constraint(equalToConstant: 220).isActive = true
+            headerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width).isActive = true
+            headerView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -10).isActive = true
+            return headerView
+        } else { return uiView  }
+    }
+    
     func addSubviews() {
         view.backgroundColor = .white
         view.addSubview(tableView)
         view.addSubview(profileTitle)
         view.addSubview(profileTitleText)
-    }
-    
-    func addHeaderFooter() {
-        tableView.tableHeaderView = headerView
-        tableView.tableHeaderView?.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor).isActive = true
-        tableView.tableHeaderView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        tableView.tableHeaderView?.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 10).isActive = true
-        tableView.tableFooterView = UIView()
-        tableView.tableFooterView?.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        tableView.tableFooterView?.backgroundColor = .white
     }
     
     func autoresizingMask() {
