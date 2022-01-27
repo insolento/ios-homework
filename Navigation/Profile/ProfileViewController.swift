@@ -1,20 +1,20 @@
 import UIKit
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController: UIViewController {
     
-    let profileTitle: UIView = {
-        let profTitle = UIView()
-        //profTitle.backgroundColor = .white
-        //profTitle.layer.borderWidth = 1
-        return profTitle
-    }()
-        
-    let profileTitleText: UILabel = {
-        let profTitleText = UILabel()
-        //profTitleText.text = "Profile"
-        profTitleText.font = UIFont.systemFont(ofSize: 32, weight:.regular)
-        return profTitleText
-    }()
+//    let profileTitle: UIView = {
+//        let profTitle = UIView()
+//        //profTitle.backgroundColor = .white
+//        //profTitle.layer.borderWidth = 1
+//        return profTitle
+//    }()
+//
+//    let profileTitleText: UILabel = {
+//        let profTitleText = UILabel()
+//        //profTitleText.text = "Profile"
+//        profTitleText.font = UIFont.systemFont(ofSize: 32, weight:.regular)
+//        return profTitleText
+//    }()
     //Добавил уже нормально этот тайтл
     
     fileprivate let postInf: [(String, String, String, Int, Int)] = [
@@ -69,6 +69,32 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func addSubviews() {
+        view.backgroundColor = .white
+        view.addSubview(tableView)
+//        view.addSubview(profileTitle)
+//        view.addSubview(profileTitleText)
+    }
+    
+    func autoresizingMask() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+//        profileTitle.translatesAutoresizingMaskIntoConstraints = false
+//        profileTitleText.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func layout() {
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+    }
+
+}
+
+extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -80,6 +106,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath[0] == 0 {
             guard let cell: PhotosTableViewCell = tableView.dequeueReusableCell(
                 withIdentifier: CellReuseIdentifiers.photos.rawValue,
@@ -88,8 +115,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 fatalError()
             }
             return cell
-        }
-        else {
+        } else {
             guard let cell: PostCellController = tableView.dequeueReusableCell(
                 withIdentifier: CellReuseIdentifiers.post.rawValue,
                 for: indexPath
@@ -106,11 +132,36 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let photosViewController = PhotosViewController()
+//
+//        if indexPath.row == 0 {
+//            self.navigationController?.pushViewController(
+//                photosViewController,
+//                animated: true
+//            )
+//        }
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let uiView = UIView()
+//        if section == 0 {
+//            print(section)
+//            tableView.addSubview(headerView)
+//            headerView.heightAnchor.constraint(equalToConstant: 220).isActive = true
+//            headerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width).isActive = true
+//            headerView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -10).isActive = true
+//            return headerView
+//        } else { return uiView  }
+//    }
+}
+
+extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let photosViewController = PhotosViewController()
         
-        if indexPath[0] == 0 {
-            navigationController?.pushViewController(
+        if indexPath.row == 0 {
+            self.navigationController?.pushViewController(
                 photosViewController,
                 animated: true
             )
@@ -128,35 +179,4 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             return headerView
         } else { return uiView  }
     }
-    
-    func addSubviews() {
-        view.backgroundColor = .white
-        view.addSubview(tableView)
-        view.addSubview(profileTitle)
-        view.addSubview(profileTitleText)
-    }
-    
-    func autoresizingMask() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        profileTitle.translatesAutoresizingMaskIntoConstraints = false
-        profileTitleText.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    func layout() {
-        NSLayoutConstraint.activate([
-            profileTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -8),
-            profileTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 8),
-            profileTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),
-            profileTitle.heightAnchor.constraint(equalToConstant: 90),
-            profileTitleText.bottomAnchor.constraint(equalTo: profileTitle.bottomAnchor),
-            profileTitleText.centerXAnchor.constraint(equalTo: profileTitle.centerXAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: profileTitle.bottomAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.heightAnchor.constraint(equalToConstant: 10000),
-        ])
-    }
-
 }

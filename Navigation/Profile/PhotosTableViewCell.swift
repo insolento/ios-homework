@@ -35,7 +35,7 @@ class PhotosTableViewCell: UITableViewCell {
         photo.layer.cornerRadius = 6
         photo.contentMode = .scaleAspectFill
         photo.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 48)/4).isActive = true
-        photo.heightAnchor.constraint(equalTo: photo.widthAnchor).isActive = true
+        photo.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 48)/4).isActive = true
         photo.image = UIImage(named: "photo1")
         return photo
     }()
@@ -47,7 +47,7 @@ class PhotosTableViewCell: UITableViewCell {
         photo.layer.cornerRadius = 6
         photo.contentMode = .scaleAspectFill
         photo.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 48)/4).isActive = true
-        photo.heightAnchor.constraint(equalTo: photo.widthAnchor).isActive = true
+        photo.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 48)/4).isActive = true
         photo.image = UIImage(named: "photo2")
         return photo
     }()
@@ -59,19 +59,19 @@ class PhotosTableViewCell: UITableViewCell {
         photo.layer.cornerRadius = 6
         photo.contentMode = .scaleAspectFill
         photo.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 48)/4).isActive = true
-        photo.heightAnchor.constraint(equalTo: photo.widthAnchor).isActive = true
+        photo.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 48)/4).isActive = true
         photo.image = UIImage(named: "photo3")
         return photo
     }()
     
     let forthPhoto: UIImageView = {
         let photo = UIImageView()
-        photo.translatesAutoresizingMaskIntoConstraints = false
+        //photo.translatesAutoresizingMaskIntoConstraints = false
         photo.clipsToBounds = true
         photo.layer.cornerRadius = 6
         photo.contentMode = .scaleAspectFill
         photo.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 48)/4).isActive = true
-        photo.heightAnchor.constraint(equalTo: photo.widthAnchor).isActive = true
+        photo.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 48)/4).isActive = true
         photo.image = UIImage(named: "photo4")
         return photo
     }()
@@ -111,7 +111,7 @@ class PhotosTableViewCell: UITableViewCell {
     }
     
     func autoresizingMask() {
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        //contentView.translatesAutoresizingMaskIntoConstraints = false
         photoTitle.translatesAutoresizingMaskIntoConstraints = false
         arrowView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false

@@ -35,7 +35,7 @@ class LogInViewController: UIViewController {
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.setTitle("Log In", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.titleLabel?.textColor = .systemBackground
+        button.titleLabel?.textColor = .black
         button.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         return button
     }()

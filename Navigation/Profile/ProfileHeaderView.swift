@@ -48,7 +48,7 @@ class ProfileHeaderView: UIView {
     let hipsterCat: UILabel = {
         let cat = UILabel()
         cat.text = "Hipster Cat"
-        cat.font = UIFont(name: cat.font.fontName, size: 18)
+        cat.font = UIFont.systemFont(ofSize: 18)
         cat.textColor = .black
         cat.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return cat

@@ -20,43 +20,29 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.isHidden = false
-        
-        for i in 1...20{
-            let photoName = "photo" + String(i)
-            photos.append(photoName)
-        }
-        
+        self.navigationController?.navigationBar.topItem?.title = "Photo Gallery"
         view.backgroundColor = .white
         view.addSubview(photosCollection)
         layout()
         photosCollection.dataSource = self
         photosCollection.delegate = self
         photosCollection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.navigationController?.navigationBar.topItem?.title = "Photo Gallery"
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        navigationController?.navigationBar.isHidden = false
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.isHidden = false
+        
+        for i in 1...20 {
+            let photoName = "photo" + String(i)
+            photos.append(photoName)
+            print("adding photo")
+        }
     }
     
     func layout() {
         NSLayoutConstraint.activate([
-            photosCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            photosCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            photosCollection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            photosCollection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            photosCollection.topAnchor.constraint(equalTo: view.topAnchor),
+            photosCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            photosCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            photosCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
-
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
