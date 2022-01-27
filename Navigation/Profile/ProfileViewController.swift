@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController {
     }
 
     let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(PostCellController.self, forCellReuseIdentifier: CellReuseIdentifiers.post.rawValue)
         return tableView
     }()
@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         addSubviews()
-        addHeaderFooter()
+        //addHeaderFooter()
         autoresizingMask()
         layout()
 
@@ -68,10 +68,6 @@ class ProfileViewController: UIViewController {
     }
     
     func addHeaderFooter() {
-        tableView.tableHeaderView = headerView
-        tableView.tableHeaderView?.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor).isActive = true
-        tableView.tableHeaderView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        tableView.tableHeaderView?.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 10).isActive = true
         tableView.tableFooterView = UIView()
         tableView.tableFooterView?.heightAnchor.constraint(equalToConstant: 100).isActive = true
         tableView.tableFooterView?.backgroundColor = .white
@@ -102,7 +98,7 @@ class ProfileViewController: UIViewController {
 
 }
 
-extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         postInf.count
@@ -122,5 +118,20 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         cell.update(author: data.0, description: data.1, image: data.2, likes: data.3, views: data.4)
 
         return cell
+    }
+}
+
+extension ProfileViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let uiView = UIView()
+        if section == 0 {
+            print(section)
+            tableView.addSubview(headerView)
+            headerView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+            headerView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - 16).isActive = true
+            headerView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -10).isActive = true
+            return headerView
+        } else { return uiView  }
     }
 }
