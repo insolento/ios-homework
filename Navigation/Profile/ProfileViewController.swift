@@ -50,7 +50,13 @@ class ProfileViewController: UIViewController {
         addSubviews()
         autoresizingMask()
         layout()
-
+        
+        #if DEBUG
+        view.backgroundColor = .systemGray6
+        #else
+        view.backgroundColor = .green
+        #endif
+        
         tableView.dataSource = self
         tableView.delegate = self
     }

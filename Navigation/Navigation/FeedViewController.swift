@@ -3,10 +3,6 @@ import UIKit
 class FeedViewController: UIViewController {
     let postController = PostViewController()
     
-    struct Post {
-        internal var title: String
-    }
-    
     let buttonToPost: UIButton = {
         let buttonToPost = UIButton(type: .system)
         buttonToPost.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
